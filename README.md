@@ -1,12 +1,12 @@
-# Sine qua non for [Neovim](https://github.com/neovim/neovim).
+<h1><samp>Sine qua non for <a href="https://github.com/neovim/neovim">Neovim</a>.</samp></h1>
 
 This theme is dark-only and roughly tries to follow [Tonsky's syntax-highlighting article](https://tonsky.me/blog/syntax-highlighting/).
 
-## Usage
+### Usage
 
 You can use this repo as you would with any other Neovim theme.
 
-### Nix flake
+#### Nix flake
 
 ```nix
 {
@@ -44,7 +44,7 @@ Then in Home Manager:
 }
 ```
 
-### Configuration
+#### Configuration
 
 ```lua
 require("snqn").setup({
@@ -66,7 +66,7 @@ require("snqn").setup({
 })
 ```
 
-#### Options
+##### Options
 
 - `transparent`: make editor backgrounds transparent
 - `transparent_highlights`: also remove fills from highlight-style surfaces like selection/search/diff/diagnostic chips
@@ -75,17 +75,21 @@ require("snqn").setup({
 - `highlight_overrides`: override/add custom highlight groups
 
 
-## Thanks to
+### Thanks to
 
-### Contributors
+#### Contributors
 
 - [74k1](https://github.com/74k1)
 
-### Inspirations
+#### Inspirations
 
 - [Nikita Prokopov](https://github.com/tonsky)
 - [y9san9/y9nika.nvim](https://github.com/y9san9/y9nika.nvim)
 
----
+<br/>
 
-Copyright © 2026-present SNQN
+<p align="center">
+  <img src="https://raw.githubusercontent.com/snqn/snqn/main/.github/assets/snqn_spacer.png" width="75%" />
+</p>
+
+<p align="center"><samp>Copyright © 2026-present SNQN</samp></p>
