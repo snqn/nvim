@@ -44,11 +44,10 @@ function M.resolve(opts)
         fg_strong = base.base06,
         fg_soft = base.base04,
         muted = base.base03,
-        local_decl = util.mix(base.base0D, bg, 0.22),
         definition = base.base0D,
         literal = base.base0B,
-        constant = base.base0E,
         comment = base.base0F,
+        change = base.base0A,
         accent = base.base0C,
         error = base.base08,
         warn = base.base09,
@@ -63,7 +62,7 @@ function M.resolve(opts)
         search = util.mix(base.base0B, bg, 0.78),
         inc_search = util.mix(base.base0D, bg, 0.70),
         diff_add = util.mix(base.base0B, bg, 0.80),
-        diff_change = util.mix(base.base0D, bg, 0.82),
+        diff_change = util.mix(base.base0A, bg, 0.82),
         diff_delete = util.mix(base.base08, bg, 0.82),
     }
 end

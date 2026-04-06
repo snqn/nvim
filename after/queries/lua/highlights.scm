@@ -1,15 +1,6 @@
 ;; vim: ft=query
 ;; extends
 
-(variable_declaration
-  (assignment_statement
-    (variable_list
-      name: (identifier) @snqn.local)))
-
-(variable_declaration
-  (variable_list
-    name: (identifier) @snqn.local))
-
 (function_declaration
   name: (identifier) @snqn.definition)
 

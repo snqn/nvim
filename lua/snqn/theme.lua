@@ -43,7 +43,7 @@ local function set_terminal_colors(colors)
     vim.g.terminal_color_1 = colors.error
     vim.g.terminal_color_2 = colors.literal
     vim.g.terminal_color_3 = colors.comment
-    vim.g.terminal_color_4 = colors.local_decl
+    vim.g.terminal_color_4 = colors.definition
     vim.g.terminal_color_5 = colors.definition
     vim.g.terminal_color_6 = colors.accent
     vim.g.terminal_color_7 = colors.fg
@@ -51,7 +51,7 @@ local function set_terminal_colors(colors)
     vim.g.terminal_color_9 = colors.warn
     vim.g.terminal_color_10 = util.lighten(colors.literal, 0.10)
     vim.g.terminal_color_11 = util.lighten(colors.comment, 0.06)
-    vim.g.terminal_color_12 = util.lighten(colors.local_decl, 0.08)
+    vim.g.terminal_color_12 = util.lighten(colors.definition, 0.08)
     vim.g.terminal_color_13 = util.lighten(colors.definition, 0.08)
     vim.g.terminal_color_14 = util.lighten(colors.accent, 0.06)
     vim.g.terminal_color_15 = util.lighten(colors.fg, colors.mode == "light" and 0.04 or 0.18)
@@ -80,10 +80,8 @@ function M.build(opts)
     local groups = {
         ["@snqn.base"] = { fg = colors.fg },
         ["@snqn.muted"] = { fg = colors.muted },
-        ["@snqn.local"] = { fg = colors.local_decl },
         ["@snqn.definition"] = syntax_group(colors.definition, opts.transparent and nil or colors.syntax_definition_bg),
         ["@snqn.literal"] = syntax_group(colors.literal, opts.transparent and nil or colors.syntax_literal_bg),
-        ["@snqn.constant"] = { fg = colors.constant },
         ["@snqn.comment"] = syntax_group(colors.comment, opts.transparent and nil or colors.syntax_comment_bg),
 
         Normal = { fg = colors.fg, bg = editor_bg(opts, colors.bg) },
@@ -113,7 +111,7 @@ function M.build(opts)
         Search = opts.transparent and opts.transparent_highlights and emphasis(colors.comment) or { fg = colors.fg_strong, bg = surface_bg(opts, colors.search) },
         CurSearch = opts.transparent and opts.transparent_highlights and emphasis(colors.warn) or { fg = colors.fg_strong, bg = surface_bg(opts, colors.inc_search) },
         IncSearch = opts.transparent and opts.transparent_highlights and emphasis(colors.warn) or { fg = colors.fg_strong, bg = surface_bg(opts, colors.inc_search) },
-        MatchParen = opts.transparent and opts.transparent_highlights and emphasis(colors.local_decl) or { fg = colors.fg, bg = surface_bg(opts, colors.current) },
+        MatchParen = opts.transparent and opts.transparent_highlights and emphasis(colors.definition) or { fg = colors.fg, bg = surface_bg(opts, colors.current) },
 
         Pmenu = { fg = colors.fg, bg = surface_bg(opts, colors.bg_float) },
         PmenuSel = opts.transparent and opts.transparent_highlights and emphasis(colors.definition) or { fg = colors.fg, bg = surface_bg(opts, colors.selection) },
@@ -129,12 +127,12 @@ function M.build(opts)
         WinBarNC = { fg = colors.fg_soft, bg = editor_bg(opts, colors.bg) },
 
         Comment = { link = "@snqn.comment" },
-        Constant = { link = "@snqn.constant" },
+        Constant = { link = "@snqn.literal" },
         String = { link = "@snqn.literal" },
         Character = { link = "@snqn.literal" },
-        Number = { link = "@snqn.constant" },
-        Boolean = { link = "@snqn.constant" },
-        Float = { link = "@snqn.constant" },
+        Number = { link = "@snqn.literal" },
+        Boolean = { link = "@snqn.literal" },
+        Float = { link = "@snqn.literal" },
         Identifier = { link = "@snqn.base" },
         Function = { link = "@snqn.base" },
         Statement = { link = "@snqn.muted" },
@@ -173,11 +171,11 @@ function M.build(opts)
         DiagnosticVirtualTextHint = opts.transparent and opts.transparent_highlights and { fg = colors.hint } or { fg = colors.hint, bg = surface_bg(opts, colors.bg_alt) },
 
         DiffAdd = opts.transparent and opts.transparent_highlights and { fg = colors.literal } or { bg = surface_bg(opts, colors.diff_add) },
-        DiffChange = opts.transparent and opts.transparent_highlights and { fg = colors.local_decl } or { bg = surface_bg(opts, colors.diff_change) },
+        DiffChange = opts.transparent and opts.transparent_highlights and { fg = colors.change } or { bg = surface_bg(opts, colors.diff_change) },
         DiffDelete = opts.transparent and opts.transparent_highlights and { fg = colors.error } or { bg = surface_bg(opts, colors.diff_delete) },
         DiffText = opts.transparent and opts.transparent_highlights and emphasis(colors.definition) or { bg = surface_bg(opts, colors.current) },
         Added = { fg = colors.literal },
-        Changed = { fg = colors.local_decl },
+        Changed = { fg = colors.change },
         Removed = { fg = colors.error },
 
         Error = { fg = colors.error },
@@ -191,7 +189,7 @@ function M.build(opts)
         ["@comment.documentation"] = { link = "@snqn.comment" },
         ["@comment.todo"] = opts.transparent and opts.transparent_highlights and { fg = colors.comment, underline = true } or { fg = colors.fg_strong, bg = surface_bg(opts, colors.comment) },
         ["@markup.quote"] = { link = "@snqn.comment" },
-        ["@markup.link"] = { fg = colors.local_decl },
+        ["@markup.link"] = { fg = colors.definition },
         ["@markup.link.label"] = { fg = colors.definition },
         ["@markup.link.url"] = { fg = colors.accent },
         ["@markup.raw"] = { link = "@snqn.literal" },
@@ -201,11 +199,11 @@ function M.build(opts)
         ["@string.escape"] = { link = "@snqn.literal" },
         ["@character"] = { link = "@snqn.literal" },
         ["@character.special"] = { link = "@snqn.literal" },
-        ["@number"] = { link = "@snqn.constant" },
-        ["@number.float"] = { link = "@snqn.constant" },
-        ["@boolean"] = { link = "@snqn.constant" },
-        ["@constant"] = { link = "@snqn.constant" },
-        ["@constant.builtin"] = { link = "@snqn.constant" },
+        ["@number"] = { link = "@snqn.literal" },
+        ["@number.float"] = { link = "@snqn.literal" },
+        ["@boolean"] = { link = "@snqn.literal" },
+        ["@constant"] = { link = "@snqn.literal" },
+        ["@constant.builtin"] = { link = "@snqn.literal" },
         ["@constant.macro"] = { link = "@snqn.definition" },
 
         ["@variable"] = { link = "@snqn.base" },
@@ -256,7 +254,7 @@ function M.build(opts)
         gitcommitComment = { link = "@snqn.comment" },
         gitcommitUntracked = { fg = colors.literal },
         gitcommitDiscarded = { fg = colors.error },
-        gitcommitSelected = { fg = colors.local_decl },
+        gitcommitSelected = { fg = colors.change },
 
         TelescopeNormal = { fg = colors.fg, bg = editor_bg(opts, colors.bg_float) },
         TelescopeBorder = { fg = colors.border, bg = editor_bg(opts, colors.bg_float) },

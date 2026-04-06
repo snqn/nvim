@@ -1,6 +1,6 @@
 <h1><samp>Sine qua non for <a href="https://github.com/neovim/neovim">Neovim</a>.</samp></h1>
 
-This theme is dark-only and roughly tries to follow [Tonsky's syntax-highlighting article](https://tonsky.me/blog/syntax-highlighting/).
+This theme is dark-only and follows [Tonsky's syntax-highlighting article](https://tonsky.me/blog/syntax-highlighting/): highlight less, make definitions easy to scan, keep references plain, and let comments stay visible.
 
 ### Usage
 
@@ -70,7 +70,7 @@ require("snqn").setup({
 
 - `transparent`: make editor backgrounds transparent
 - `transparent_highlights`: also remove fills from highlight-style surfaces like selection/search/diff/diagnostic chips
-- `disable_semantic_tokens`: disable LSP semantic token coloring on attach so Treesitter/theme colors stay in control
+- `disable_semantic_tokens`: disable LSP semantic token coloring on attach so syntax stays in the theme's small set of highlight categories
 - `palettes`: override any `base00`-`base0F` color
 - `highlight_overrides`: override/add custom highlight groups
 
