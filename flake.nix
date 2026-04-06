@@ -22,7 +22,7 @@
         let
           snqn = pkgs.vimUtils.buildVimPlugin {
             pname = "snqn.nvim";
-            version = "0.1.0";
+            version = "0.1.1";
             src = self;
           };
         in {
@@ -33,7 +33,7 @@
       legacyPackages = forAllSystems (pkgs: {
         snqn = pkgs.vimUtils.buildVimPlugin {
           pname = "snqn.nvim";
-          version = "0.1.0";
+          version = "0.1.1";
           src = self;
         };
       });
